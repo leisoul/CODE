@@ -1,47 +1,91 @@
-# CODE
+
+# Image Restoration Framework
+
+This repository contains the implementation of an image restoration framework that supports multiple tasks, including denoising, deblurring, low-light enhancement, and raindrop removal.  
+The framework is based on a U-shaped encoder-decoder architecture with novel attention modules to balance efficiency and performance.
 
 
+## 📂 Project Structure
+```
 
-# Training configuration
-GPU: [0,1,2,3]
+project_root/
+│── models.py             # Network architecture definitions
+│── utils.py              # Utility functions
+│── dataloader.py         # Dataset loader and preprocessing
+│── train.py              # Training entry point
+│── validation.py         # Validation and evaluation scripts
+│── README.md             # Project description and usage
 
-python train.py
+````
 
-# Optimization arguments.
-OPTIM:
-  BATCH: 2
-  EPOCHS: 150
-  # NEPOCH_DECAY: [10]
-  LR_INITIAL: 2e-4
-  LR_MIN: 1e-6
-  # BETA1: 0.9
+---
 
+## 🚀 Features
+- **Enhanced U-shaped architecture** with improved head and tail design.
+- **Multi-Branch Directional Convolution Mechanism (MBDM)** for structure recovery.
+- **Shallow Feature Channel Attention Module (SF-CAM)** for detail refinement.
+- **Lightweight attention mechanism** that captures both global and local features.
+- Supports **multiple restoration tasks** with competitive efficiency.
 
- -------------------------------------------------
- GoPro dataset:
- Training patches: 33648 (2103 x 16)
- Validation: 1111
- Initial learning rate: 2e-4
- Final learning rate: 1e-6
- Training epochs: 150 (120 is enough)
-Training time (on single 2080ti): about 10 days
+---
 
- Raindrop dataset:
- Training patches: 6888 (861 x 8)
- Validation: 1228 (307 x 4)
- Initial learning rate: 2e-4
- Final learning rate: 1e-6
- Training epochs: 150 (100 is enough)
-Training time (on single 1080ti): about 2.5 days
+## ⚙️ Requirements
+- Python 3.8+
+- PyTorch >= 1.9
+- torchvision
+- numpy, scipy, opencv-python
+- tqdm, matplotlib
 
+Install dependencies:
+```bash
+pip install -r requirements.txt
+````
 
-Train:
-If the above path and data are all correctly setting, just simply run:
+---
 
-python train.py
-Test (Evaluation)
-To test the models of Deraindrop, Deblurring with ground truth, see the test.py and run
+## 🏋️ Training
 
-python test.py 
-Here is an example to perform Deraindrop:
+To start training, run:
+
+```bash
+python train.py 
+```
+
+---
+
+## 📊 Validation
+
+To evaluate the model:
+
+```bash
+python validation.py
+```
+
+---
+
+## 📂 Dataset
+
+Prepare datasets according to the task (e.g., SIDD for denoising, GoPro for deblurring).
+Modify `dataloader.py` to set the dataset paths.
+
+---
+
+## 🔥 Results
+
+The proposed method achieves state-of-the-art performance on multiple benchmarks:
+
+* **Denoising:** SIDD, DND
+* **Deblurring:** GoPro
+* **Low-light enhancement:** LOL dataset
+* **Raindrop removal:** RainDrop dataset
+
+---
+
+## 📄 Citation
+
+If you find this work useful, please cite:
+
+```
+
+```
 
